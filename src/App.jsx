@@ -1,8 +1,8 @@
-import Hello from "./components/Hello";
+import Body from "./components/Body";
 import "./App.css";
 
 function App() {
-  return <Hello />;
+  return <Body />;
 }
 
 export default App;
