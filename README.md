@@ -1,0 +1,4 @@
+# OTAKU FLIX ===>netflix for all the otakus...
+
+--USED VITE FOR INSTALLATION
+-CONFIGURED TAILWIND CSS
