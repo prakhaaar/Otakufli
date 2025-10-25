@@ -27,13 +27,9 @@ const Signup = () => {
 
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
-        console.log("✅ Account created successfully!");
-      } else {
-        console.log("⚠️ Signup not complete:", result);
       }
     } catch (err) {
-      console.error(err);
-      setError(err.errors?.[0]?.message || "Something went wrong.");
+      setError(err.errors?.[0]?.message || "Signup failed. Try again.");
     }
 
     setLoading(false);
@@ -47,110 +43,120 @@ const Signup = () => {
         redirectUrlComplete: "/dashboard",
       });
     } catch (err) {
-      console.error(err);
-      setError("Google signup failed. Please try again.");
+      setError("Google signup failed. Try again.");
     }
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center font-[Poppins] overflow-hidden">
-      {/* --- Static Background --- */}
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden font-[Poppins]">
+      {/* Background */}
       <img
         src="/main.webp"
         alt="background"
-        className="absolute inset-0 w-full h-full object-cover brightness-90"
+        className="absolute inset-0 w-full h-full object-cover brightness-[0.45]"
       />
-      {/* Gradient Overlay (focus in center) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.8)_100%)]" />
+
+      <div className="absolute inset-0 bg-linear-to-b from-black/50 to-black/80" />
 
       {/* Header */}
       <Header />
 
-      {/* --- Signup Form --- */}
+      {/* Signup Card */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-20 bg-black/70 border border-white/10 backdrop-blur-md 
-                   rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.6)] w-[90%] max-w-md p-10 text-white"
+        className="relative z-20 w-[90%] max-w-md p-16 bg-black/75 backdrop-blur-lg
+                   border border-gray-700/40 shadow-[0_0_15px_rgba(0,0,0,1)]
+                   rounded-md text-white"
       >
-        <h1 className="text-3xl font-bold text-center mb-8">Sign Up</h1>
+        <h1 className="text-3xl font-extrabold mb-8 text-center text-red-400">
+          Sign Up
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Name */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Name</label>
+            <label className="text-xs text-gray-400 block mb-1">Name</label>
             <input
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white
-                         placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full p-3 bg-black/40 border border-gray-500/40 
+                         rounded-sm text-white placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-red-600"
               placeholder="Enter your name"
             />
           </div>
 
+          {/* Email */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Email</label>
+            <label className="text-xs text-gray-400 block mb-1">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white
-                         placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full p-3 bg-black/40 border border-gray-500/40 
+                         rounded-sm text-white placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-red-600"
               placeholder="Enter your email"
             />
           </div>
 
+          {/* Password */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Password</label>
+            <label className="text-xs text-gray-400 block mb-1">Password</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white
-                         placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full p-3 bg-black/40 border border-gray-500/40 
+                         rounded-sm text-white placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-red-600"
               placeholder="Enter your password"
             />
           </div>
 
           {error && (
-            <p className="text-center text-red-400 text-sm font-medium">
+            <p className="text-red-400 text-sm font-medium text-center">
               {error}
             </p>
           )}
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
-            className={`w-full mt-3 py-3 rounded-lg bg-gradient-to-r from-red-600 to-red-700 
-                        hover:from-red-700 hover:to-red-800 font-semibold text-lg transition-all duration-300 shadow-md ${
-                          loading ? "opacity-60 cursor-not-allowed" : ""
-                        }`}
+            className={`w-full py-3 bg-red-700 hover:bg-red-800 font-semibold 
+                        rounded-sm text-lg shadow-md transition-all
+                        ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
 
+        {/* Divider */}
         <div className="flex items-center my-6">
-          <hr className="grow border-gray-600/50" />
-          <span className="mx-3 text-gray-400 text-sm">OR</span>
-          <hr className="grow border-gray-600/50" />
+          <hr className="grow border-gray-700" />
+          <span className="mx-3 text-gray-500 text-xs">OR</span>
+          <hr className="grow border-gray-700" />
         </div>
 
+        {/* Google Signup */}
         <button
           onClick={handleGoogleSignUp}
-          className="w-full flex items-center justify-center gap-3 py-3 rounded-lg 
-                     bg-white text-black font-semibold text-lg transition-all hover:bg-gray-100"
+          className="w-full py-3 flex items-center justify-center gap-3
+                     bg-white text-black font-medium text-base rounded-sm
+                     hover:bg-gray-200 transition-all shadow-[0_0_10px_rgba(0,0,0,0.4)]"
         >
-          <FcGoogle className="w-6 h-6" />
-          Sign up with Google
+          <FcGoogle size={22} />
+          Continue with Google
         </button>
 
-        <p className="text-center mt-6 text-gray-400 text-sm">
+        <p className="text-center text-gray-400 text-sm mt-6">
           Already have an account?{" "}
           <a href="/" className="text-red-500 hover:underline">
             Sign in

@@ -75,14 +75,14 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="text-xs text-gray-400 block mb-1">Email</label>
+            <label className="text-s text-red-900 block mb-1">Email</label>
             <input
               type="email"
               value={email}
               required
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 bg-black/40 border border-gray-500/40 
-                         rounded-sm text-white placeholder-gray-400
+              className="w-full p-3 bg-black/80 border border-gray-500/40 
+                         rounded-4xl text-white placeholder-gray-400
                          focus:outline-none focus:ring-2 focus:ring-red-600"
               placeholder="Enter your email"
             />
