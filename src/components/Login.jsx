@@ -3,58 +3,54 @@ import Header from "./Header";
 
 const Login = () => {
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="relative h-screen w-screen overflow-hidden text-white">
       {/* Background image */}
       <img
         src="/main.webp"
         alt="background"
-        className="absolute inset-0 w-full h-full object-cover brightness-[0.4] blur-[2px]"
+        className="absolute inset-0 w-full h-full object-cover brightness-[0.4]"
       />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-10"></div>
 
       {/* Header */}
       <Header />
 
-      {/* Login form container */}
-      <div className="relative z-20 flex items-center justify-center h-full text-white px-4">
-        <form className="bg-black/70 backdrop-blur-sm p-10 rounded-2xl w-full max-w-md shadow-2xl space-y-6">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            Sign In to <span className="text-red-600">OtakuFlix</span>
-          </h2>
+      {/* Centered Login Form */}
+      <div className="relative z-20 flex items-center justify-center h-full">
+        <form className="bg-black/75 backdrop-blur-sm w-11/12 sm:w-6/12 md:w-3/12 lg:w-2/12 py-24 px-10 rounded-lg shadow-2xl flex flex-col justify-center">
+          <h1 className="font-bold text-3xl mb-8 text-center">Sign In</h1>
 
           {/* Email */}
           <input
             type="email"
-            placeholder="Email"
-            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
+            placeholder="Email Address"
+            className="p-4 my-3 w-full bg-[#333] rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
           />
 
           {/* Password */}
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
+            className="p-4 my-3 w-full bg-[#333] rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
           />
 
-          {/* Submit button */}
+          {/* Sign In Button */}
           <button
             type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-lg font-semibold shadow-lg"
+            className="mt-8 bg-red-600 hover:bg-red-700 font-semibold py-3 rounded text-lg transition-all duration-200"
           >
             Sign In
           </button>
 
-          {/* Extra options */}
-          <div className="text-center text-sm text-gray-400">
-            <p>
-              New to OtakuFlix?{" "}
-              <a href="#" className="text-red-500 hover:underline">
-                Sign up now
-              </a>
-            </p>
-          </div>
+          {/* Footer */}
+          <p className="mt-8 text-center text-gray-400 text-sm">
+            New to OtakuFlix?{" "}
+            <a href="#" className="text-red-500 hover:underline">
+              Sign up now
+            </a>
+          </p>
         </form>
       </div>
     </div>
